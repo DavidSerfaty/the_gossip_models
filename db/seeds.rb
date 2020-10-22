@@ -4,6 +4,7 @@ User.destroy_all
 
 cities = Array.new
 users = Array.new
+gossips = Array.new
 
 10.times do
   city = City.create(name: Faker::Address.city, zip_code: Faker::Address.postcode)
@@ -16,3 +17,9 @@ puts "10 Cities créées"
   users << user
 end
 puts "10 Users créés"
+
+20.times do
+  gossip = Gossip.create(title: Faker::Lorem.sentence(word_count: 3), content: Faker::Lorem.sentence(word_count: 10), user: users.sample)
+  gossips << gossip
+end
+puts "20 Gossips créés"

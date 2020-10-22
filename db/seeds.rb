@@ -1,16 +1,18 @@
 require 'faker'
 
-City.destroy_all
-User.destroy_all
-Gossip.destroy_all
-Tag.destroy_all
+PrivateMessage.destroy_all
 GossipTag.destroy_all
+Tag.destroy_all
+Gossip.destroy_all
+User.destroy_all
+City.destroy_all
 
 cities = Array.new
 users = Array.new
 gossips = Array.new
 tags = Array.new
 gossip_tags = Array.new
+private_messages = Array.new
 
 10.times do
   city = City.create(name: Faker::Address.city, zip_code: Faker::Address.postcode)
@@ -36,8 +38,14 @@ puts "20 Gossips créés"
 end
 puts "10 Tags créés"
 
-10.times do
+40.times do
   gossip_tag = GossipTag.create(gossip: gossips.sample, tag:tags.sample)
   gossip_tags << gossip_tag
 end
-puts "10 GossipTags créés"
+puts "40 GossipTags créés"
+
+20.times do
+  private_message = PrivateMessage.create(sender: users.sample, recipient: users.sample)
+  private_messages << private_message
+end
+puts "20 Messages créés"

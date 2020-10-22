@@ -1,10 +1,16 @@
 require 'faker'
 
+City.destroy_all
 User.destroy_all
+Gossip.destroy_all
+Tag.destroy_all
+GossipTag.destroy_all
 
 cities = Array.new
 users = Array.new
 gossips = Array.new
+tags = Array.new
+gossip_tags = Array.new
 
 10.times do
   city = City.create(name: Faker::Address.city, zip_code: Faker::Address.postcode)
@@ -23,3 +29,15 @@ puts "10 Users créés"
   gossips << gossip
 end
 puts "20 Gossips créés"
+
+10.times do
+  tag = Tag.create(title: Faker::Lorem.word)
+  tags << tag
+end
+puts "10 Tags créés"
+
+10.times do
+  gossip_tag = GossipTag.create(gossip: gossips.sample, tag:tags.sample)
+  gossip_tags << gossip_tag
+end
+puts "10 GossipTags créés"
